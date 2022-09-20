@@ -4,10 +4,16 @@ let app = express();
 require('dotenv').config()
 app.use("/public",express.static(__dirname+"/public"));
 
+app.use(function(req,res,next){
+    
+    var string = req.method + " " + req.path + " - " + req.ip;
+    console.log(string);
+    next();
+});
 app.get('/',
 function(req,res){
     res.sendFile(__dirname+'/views/index.html');
-})
+});
 
 app.get('/json',
 function(req,res)
