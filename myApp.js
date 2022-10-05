@@ -42,6 +42,13 @@ app.get("/:wo/echo",function(req,res){
     console.log(word);
     res.json({echo:word});
 });
+
+app.get("/name",function(req,res){
+    var {first:firstname,last:lastname} = req.query;
+    res.json({
+        name: `${firstname} ${lastname}`
+    });
+});
 console.log("Hello World");
 
 
