@@ -1,5 +1,6 @@
 const { response } = require('express');
 let express = require('express');
+const { acceptsLanguages } = require('express/lib/request');
 let app = express();
 require('dotenv').config()
 app.use("/public",express.static(__dirname+"/public"));
@@ -35,8 +36,13 @@ function(req,res,next)
 {
     res.json({"time":req.time});
 });
-console.log("Hello World");
 
+app.get("/:wo/echo",function(req,res){
+    var word = req.params.wo
+    console.log(word);
+    res.json({echo:word});
+});
+console.log("Hello World");
 
 
 
