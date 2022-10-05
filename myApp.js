@@ -45,6 +45,7 @@ app.get("/:wo/echo",function(req,res){
 
 app.get("/name",function(req,res){
     var {first:firstname,last:lastname} = req.query;
+    console.log(firstname,lastname);
     res.json({
         name: `${firstname} ${lastname}`
     });
