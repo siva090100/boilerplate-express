@@ -1,8 +1,10 @@
 const { response } = require('express');
 let express = require('express');
+var bodyparser= require('body-parser');
 const { acceptsLanguages } = require('express/lib/request');
 let app = express();
 require('dotenv').config()
+app.use(bodyparser.urlencoded({extended:true}));
 app.use("/public",express.static(__dirname+"/public"));
 
 app.use(function(req,res,next){
@@ -49,6 +51,13 @@ app.get("/name",function(req,res){
     res.json({
         name: `${firstname} ${lastname}`
     });
+});
+
+app.post("/name",function(req,res){
+  console.log("hi");
+  var string = req.body.first + " " + req.body.last;
+  console.log(string);
+  res.json({ name: string });
 });
 console.log("Hello World");
 
